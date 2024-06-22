@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -150,6 +150,107 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://jasmineaura.github.io/2024/06/22/CTF%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JasmineAura">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JasmineAura's Blog">
+      <meta itemprop="description" content="It's just a matter of time">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | JasmineAura's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/06/22/CTF%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-06-22 19:46:22 / 修改时间：21:40:31" itemprop="dateCreated datePublished" datetime="2024-06-22T19:46:22+08:00">2024-06-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h2><h4 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数:"></a>常见函数:</h4><p><code>intval()</code></p>
+<p><code>intval()</code>函数是获取变量的整型值，当它获取的变量不能被转换时返回“0”；</p>
+<p>如果字符串其中有数字，则返回数字；如果开头无法转换则返回0.</p>
+<p><strong>绕过方式:</strong></p>
+<ul>
+<li><p>两次取反: <code>~~val</code></p>
+</li>
+<li><p>转二进制: <code>0bxxxxxxx</code></p>
+</li>
+</ul>
+<p><code>eval()</code></p>
+<p><code>eval()</code>函数用来执行一个字符串表达式，并返回表达式的值.</p>
+<p><code>passthru()</code></p>
+<p>与<code>system()</code>类似，区别在于<code>passthru</code>直接在浏览器输出.</p>
+<h4 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令:"></a>常见指令:</h4><p><code>rm -rf /*</code></p>
+<p>删除当前目录下所有文件。</p>
+<p>常见使用：?val&#x3D;rm -rf &#x2F;*</p>
+<h4 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入:"></a>SQL注入:</h4><p>**万能密码: **</p>
+<p>​	<code>a&#39; or 1=1#</code></p>
+<p>**sqlmap使用: **</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>python sqlmap.py -u 题目地址?(必备参数)</code> 测试.</li>
+<li><input disabled="" type="checkbox"> <code>python sqlmap.py -u 题目地址?(必备参数) --dbs</code> 得到库名.</li>
+<li><input disabled="" type="checkbox"> <code>python sqlmap.py -u 题目地址?(必备参数) -D 指定库名 --tables</code> 得到指定库中的表名.</li>
+<li><input disabled="" type="checkbox"> <code>python sqlmap.py -u 题目地址?(必备参数) -D 指定库名 -T 指定表名 --columns </code> 得到指定库中指定表中的字段名.</li>
+<li><input disabled="" type="checkbox"> <code>python sqlmap.py -u 题目地址?(必备参数) -D 指定库名 -T 指定表名 -C 指定字段名 --dump </code> 得到指定库中指定表中指定字段中的数据.</li>
+</ul>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h4 id="文本加解密"><a href="#文本加解密" class="headerlink" title="文本加解密:"></a>文本加解密:</h4><p><strong>颜文字加解密:</strong> </p>
+<p>​	解密网站: <a target="_blank" rel="noopener" href="http://hi.pcmoe.net/kaomoji.html">http://hi.pcmoe.net/kaomoji.html</a></p>
+<p>**Rabbit加解密: **</p>
+<p>​	密文以<code>U2FsdGVkX1</code>开头，与Base64长得很像，使用Base64解密后得到的字符串开头为<code>Salted__</code>.</p>
+<p>​	解密网站: <a target="_blank" rel="noopener" href="https://www.sojson.com/encrypt_rabbit.html">https://www.sojson.com/encrypt_rabbit.html</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
