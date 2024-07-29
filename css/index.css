@@ -4340,9 +4340,6 @@ h1.page-title + .tag-cloud-list {
   overflow: auto hidden;
   padding: 5px;
 }
-.katex-display::-webkit-scrollbar {
-  display: none;
-}
 mjx-container {
   overflow-x: auto;
   overflow-y: hidden;
